@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEPPEN ENGLISH - デザインガイド 2026</title>
+<meta name="description" content="TEPPEN ENGLISH ブランドデザインシステム。カラー、タイポグラフィ、ロゴ、ボタン、スペーシング、トーン＆マナーの公式ガイドライン。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://teppen-english-brand-book.vercel.app/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="TEPPEN ENGLISH デザインガイド 2026">
+<meta property="og:description" content="TEPPEN ENGLISH ブランドデザインシステム - Figma実装リファレンス">
+<meta property="og:type" content="website">
+
+<!-- Structured Data for AI -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "TEPPEN ENGLISH デザインガイド 2026",
+  "description": "TEPPEN ENGLISH ブランドデザインシステム。カラーパレット、タイポグラフィ、ロゴガイドライン、UIコンポーネント、スペーシング、トーン＆マナーの公式リファレンス。",
+  "publisher": {
+    "@type": "Organization",
+    "name": "株式会社スクールウィズ"
+  },
+  "about": {
+    "@type": "Brand",
+    "name": "TEPPEN ENGLISH",
+    "url": "https://teppen-english.com"
+  }
+}
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
+
+  :root {
+    --navy-primary:   #00375D;
+    --navy-deep-1:    #01294B;
+    --navy-deep-2:    #011E33;
+    --navy-hero-l:    #012A4C;
+    --navy-hero-r:    #4185BE;
+    --blue-cta:       #076FB3;
+    --blue-light-bg:  #E4EBEF;
+    --white:          #FFFFFF;
+    --text-dark:      #333333;
+    --gold-start:     #C69D58;
+    --gold-mid:       #FDECBB;
+    --gold-gradient:  linear-gradient(90deg, #C69D58 0%, #FDECBB 50%, #C69D58 100%);
+    --hero-gradient:  linear-gradient(90deg, #012A4C 27%, #133D5F 50%, #4185BE 79%);
+    --font-heading:   'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', Georgia, serif;
+    --font-body:      'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background: #F5F7FA;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+  }
+
+  /* -- Global font-weight floor -- */
+  p, span, li, td, th, div, a {
+    font-weight: 500;
+  }
+  small, .note, .color-usage, .color-hex, .gradient-code,
+  .typo-spec, .font-role, .font-weight-label, .button-spec,
+  .ng-label, .spacing-usage, .tone-desc, .figma-item,
+  .cover-meta-item, .logo-card-info, .gradient-name {
+    font-weight: 600;
+  }
+  strong { font-weight: 700; }
+
+  /* -- Navigation -- */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy-deep-2);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .site-nav-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .site-nav-inner::-webkit-scrollbar { display: none; }
+  .site-nav a {
+    display: block;
+    padding: 14px 16px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+  .site-nav a:hover,
+  .site-nav a.active {
+    color: white;
+    border-bottom-color: var(--gold-start);
+  }
+
+  /* -- Cover -- */
+  .cover {
+    background: var(--hero-gradient);
+    color: white;
+    padding: 72px 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .cover-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+  .cover-logo-img {
+    height: 72px;
+    width: auto;
+    object-fit: contain;
+  }
+  .cover h1 {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+  }
+  .cover-gold {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cover p {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.82);
+    margin-top: 8px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .cover-meta-item { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); }
+  .cover-meta-item span { display: block; font-size: 15px; color: white; font-weight: 700; margin-top: 2px; }
+
+  /* -- Layout -- */
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 64px 40px;
+  }
+  .section { margin-bottom: 72px; scroll-margin-top: 60px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .section-num {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue-cta);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy-primary);
+    letter-spacing: 0.02em;
+  }
+  .section-divider {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #D0DCE6, transparent);
+  }
+  .note {
+    font-size: 12px;
+    font-weight: 600;
+    color: #777;
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+  .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  /* -- Color Section -- */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .color-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .color-swatch {
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+  }
+  .color-label-on-swatch {
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.25);
+    color: white;
+    letter-spacing: 0.05em;
+  }
+  .color-info {
+    background: white;
+    padding: 14px;
+  }
+  .color-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 3px;
+  }
+  .color-hex {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: #777;
+  }
+  .color-usage {
+    font-size: 11px;
+    color: #AAA;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* Gradient card */
+  .gradient-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .gradient-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .gradient-swatch {
+    height: 80px;
+  }
+  .gradient-info {
+    background: white;
+    padding: 14px;
+  }
+  .gradient-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+  .gradient-code {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: #777;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+
+  /* -- Typography Section -- */
+  .typo-table { width: 100%; border-collapse: collapse; }
+  .typo-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #999;
+    padding: 0 16px 12px;
+    border-bottom: 2px solid #E8EDF2;
+  }
+  .typo-table td {
+    padding: 16px;
+    border-bottom: 1px solid #F0F4F8;
+    vertical-align: middle;
+  }
+  .typo-table tr:last-child td { border-bottom: none; }
+  .typo-preview {
+    font-family: var(--font-heading);
+    color: var(--navy-primary);
+  }
+  .typo-tag {
+    display: inline-block;
+    background: #EEF3F8;
+    color: var(--blue-cta);
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .typo-spec {
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+  }
+  .typo-spec strong { color: var(--text-dark); font-weight: 700; }
+
+  .font-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 16px;
+  }
+  .font-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue-cta);
+    margin-bottom: 4px;
+    font-family: monospace;
+  }
+  .font-role { font-size: 12px; font-weight: 600; color: #888; margin-bottom: 16px; }
+  .font-weights {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .font-weight-item { text-align: center; }
+  .font-weight-sample { font-size: 24px; color: var(--navy-primary); }
+  .font-weight-label { font-size: 11px; font-weight: 600; color: #888; margin-top: 4px; }
+
+  /* -- Button Section -- */
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .button-card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .button-preview {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+    min-height: 60px;
+    align-items: center;
+    background: #F5F7FA;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .btn-primary {
+    background: white;
+    color: var(--text-dark);
+    border: 1.5px solid var(--text-dark);
+    border-radius: 48px;
+    padding: 14px 28px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+  .btn-primary-icon {
+    width: 28px; height: 28px;
+    background: var(--navy-primary);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px;
+  }
+  .btn-nav {
+    background: var(--blue-cta);
+    color: white;
+    border: none;
+    border-radius: 0;
+    padding: 14px 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    line-height: 1.4;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-tag {
+    background: var(--navy-primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 20px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-gold {
+    background: var(--gold-gradient);
+    color: var(--navy-deep-2);
+    border: none;
+    border-radius: 6px;
+    padding: 14px 28px;
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .button-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .button-spec {
+    font-size: 11px;
+    font-weight: 700;
+    color: #777;
+    line-height: 1.8;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* -- Logo Section -- */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  .logo-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .logo-sample {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-card-info {
+    background: white;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #555;
+    font-weight: 600;
+  }
+
+  /* NG Examples */
+  .ng-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .ng-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    background: white;
+  }
+  .ng-sample {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .ng-badge {
+    position: absolute;
+    top: 8px; right: 8px;
+    background: #E53E3E;
+    color: white;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .ng-label {
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+    border-top: 1px solid #F0F0F0;
+    line-height: 1.5;
+  }
+
+  /* -- Spacing -- */
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 12px;
+    background: white;
+    border-radius: 8px;
+    padding: 14px 20px;
+  }
+  .spacing-bar {
+    background: linear-gradient(135deg, var(--blue-cta), var(--navy-primary));
+    height: 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .spacing-val {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy-primary);
+    width: 48px;
+    flex-shrink: 0;
+  }
+  .spacing-usage {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+  }
+
+  /* -- Tone section -- */
+  .tone-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .tone-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--blue-cta);
+  }
+  .tone-card.accent { border-top-color: var(--gold-start); }
+  .tone-card.dark { border-top-color: var(--navy-primary); }
+  .tone-keyword {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy-primary);
+    margin-bottom: 8px;
+  }
+  .tone-desc { font-size: 13px; font-weight: 600; color: #555; line-height: 1.6; }
+
+  /* -- Figma Notes -- */
+  .figma-box {
+    background: linear-gradient(135deg, #EEF3FF, #E8F0FE);
+    border: 1px solid #C7D8F8;
+    border-radius: 12px;
+    padding: 28px 32px;
+  }
+  .figma-box h3 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: #1A56DB;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .figma-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .figma-item {
+    background: white;
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #333;
+  }
+  .figma-item strong { color: #1A56DB; display: block; margin-bottom: 4px; font-weight: 700; }
+
+  /* -- Footer -- */
+  footer {
+    background: var(--navy-deep-2);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+  }
+  footer span { color: rgba(255,255,255,0.8); }
+
+  /* -- Utilities -- */
+  .bg-white { background: white; border-radius: 12px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+  /* -- Responsive -- */
+  @media (max-width: 768px) {
+    .cover { padding: 48px 24px 40px; }
+    .cover h1 { font-size: 28px; }
+    .cover-meta { flex-direction: column; gap: 16px; }
+    .container { padding: 40px 20px; }
+    .color-grid { grid-template-columns: repeat(2, 1fr); }
+    .gradient-grid { grid-template-columns: 1fr; }
+    .button-grid { grid-template-columns: 1fr; }
+    .tone-grid { grid-template-columns: 1fr; }
+    .ng-grid { grid-template-columns: 1fr; }
+    .logo-grid { grid-template-columns: 1fr; }
+    .figma-grid { grid-template-columns: 1fr; }
+    .typo-table { display: block; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =================== NAVIGATION =================== -->
+<nav class="site-nav" aria-label="セクションナビゲーション">
+  <div class="site-nav-inner">
+    <a href="#color" class="active">Color</a>
+    <a href="#typography">Typography</a>
+    <a href="#logo">Logo</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#spacing">Spacing</a>
+    <a href="#tone">Tone</a>
+    <a href="#figma">Figma</a>
+  </div>
+</nav>
+
+<!-- =================== COVER =================== -->
+<header class="cover">
+  <div class="cover-logo">
+    <img class="cover-logo-img" src="data:image/png;base64,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" alt="TEPPEN ENGLISH ロゴ">
+  </div>
+  <h1>デザインガイド<span class="cover-gold">2026</span></h1>
+  <p>TEPPEN ENGLISH ブランドデザインシステム — Figma実装リファレンス</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">対象サービス <span>teppen-english.com</span></div>
+    <div class="cover-meta-item">ブランド <span>TEPPEN ENGLISH</span></div>
+    <div class="cover-meta-item">運営会社 <span>株式会社スクールウィズ</span></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- =================== 1. COLOR =================== -->
+  <section class="section" id="color" aria-labelledby="color-title">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2 class="section-title" id="color-title">カラーシステム</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="label">Primary Colors — メインカラー</div>
+    <div class="color-grid" style="margin-bottom:24px">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#00375D">
+          <span class="color-label-on-swatch">#00375D</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Navy Primary</div>
+          <div class="color-hex">#00375D / rgb(0,55,93)</div>
+          <div class="color-usage">メインカラー。ヘッダー背景・セクション背景・見出し文字色</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#01294B">
+          <span class="color-label-on-swatch">#01294B</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Navy Deep 1</div>
+          <div class="color-hex">#01294B / rgb(1,41,75)</div>
+          <div class="color-usage">暗めのネイビー。コントラスト強調が必要なセクション</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#011E33">
+          <span class="color-label-on-swatch">#011E33</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Navy Deep 2</div>
+          <div class="color-hex">#011E33 / rgb(1,30,51)</div>
+          <div class="color-usage">最も深いネイビー。フッター・オーバーレイ</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#076FB3">
+          <span class="color-label-on-swatch">#076FB3</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">CTA Blue</div>
+          <div class="color-hex">#076FB3 / rgb(7,111,179)</div>
+          <div class="color-usage">テキストカラー、CTAボタン・強調テキスト</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">Support Colors — サポートカラー</div>
+    <div class="color-grid" style="margin-bottom:24px">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#E4EBEF">
+          <span class="color-label-on-swatch" style="background:rgba(0,0,0,0.12); color:#333">#E4EBEF</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Light Blue Gray</div>
+          <div class="color-hex">#E4EBEF / rgb(228,235,239)</div>
+          <div class="color-usage">ライトセクション背景。ダーク背景と交互に使用</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFFFFF; border:1px solid #E0E0E0">
+          <span class="color-label-on-swatch" style="background:rgba(0,0,0,0.1); color:#333">#FFFFFF</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Pure White</div>
+          <div class="color-hex">#FFFFFF</div>
+          <div class="color-usage">カード背景・白背景上のテキスト・ロゴ・ブライトなボタン</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#333333">
+          <span class="color-label-on-swatch">#333333</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Text Dark</div>
+          <div class="color-hex">#333333 / rgb(51,51,51)</div>
+          <div class="color-usage">ライト背景上の本文テキスト・ボタンラベル</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#EEEEEE">
+          <span class="color-label-on-swatch" style="background:rgba(0,0,0,0.12); color:#333">#EEEEEE</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Border Gray</div>
+          <div class="color-hex">#EEEEEE / rgb(238,238,238)</div>
+          <div class="color-usage">区切り線・カード境界・テーブルライン</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">Accent Colors — アクセントカラー</div>
+    <div class="color-grid" style="margin-bottom:24px">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C69D58">
+          <span class="color-label-on-swatch">#C69D58</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Gold Dark</div>
+          <div class="color-hex">#C69D58 / rgb(198,157,88)</div>
+          <div class="color-usage">アクセントカラー1。ゴールドグラデーション始端・終端</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FDECBB">
+          <span class="color-label-on-swatch" style="background:rgba(0,0,0,0.12); color:#333">#FDECBB</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Gold Light</div>
+          <div class="color-hex">#FDECBB / rgb(253,236,187)</div>
+          <div class="color-usage">アクセントカラー2。ゴールドグラデーション中央（最も明るい）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label">Gradients — グラデーション</div>
+    <div class="gradient-grid">
+      <div class="gradient-card">
+        <div class="gradient-swatch" style="background: linear-gradient(90deg, #012A4C 27%, #133D5F 50%, #4185BE 79%)"></div>
+        <div class="gradient-info">
+          <div class="gradient-name">Hero Gradient（ヒーロー背景）</div>
+          <div class="gradient-code">linear-gradient(90deg, #012A4C 27%, #133D5F 50%, #4185BE 79%)</div>
+        </div>
+      </div>
+      <div class="gradient-card">
+        <div class="gradient-swatch" style="background: linear-gradient(90deg, #C69D58 0%, #FDECBB 50%, #C69D58 100%)"></div>
+        <div class="gradient-info">
+          <div class="gradient-name">Gold Shimmer（ゴールドアクセント）</div>
+          <div class="gradient-code">linear-gradient(90deg, #C69D58 0%, #FDECBB 50%, #C69D58 100%)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 2. TYPOGRAPHY =================== -->
+  <section class="section" id="typography" aria-labelledby="typo-title">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2 class="section-title" id="typo-title">タイポグラフィ</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="font-card">
+      <div class="font-name">Noto Serif JP</div>
+      <div class="font-role">見出し用フォント（H1〜H4） — Google Fonts</div>
+      <div class="font-weights">
+        <div class="font-weight-item">
+          <div class="font-weight-sample" style="font-family:'Noto Serif JP'; font-weight:500">Aa</div>
+          <div class="font-weight-label">Medium / 500</div>
+        </div>
+        <div class="font-weight-item">
+          <div class="font-weight-sample" style="font-family:'Noto Serif JP'; font-weight:600">Aa</div>
+          <div class="font-weight-label">SemiBold / 600</div>
+        </div>
+        <div class="font-weight-item">
+          <div class="font-weight-sample" style="font-family:'Noto Serif JP'; font-weight:700">Aa</div>
+          <div class="font-weight-label">Bold / 700</div>
+        </div>
+        <div class="font-weight-item" style="margin-left:24px">
+          <div class="font-weight-sample" style="font-family:'Noto Serif JP'; font-size:20px; color:var(--navy-primary)">英語コーチング</div>
+          <div class="font-weight-label">使用例</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-card">
+      <div class="font-name">Noto Sans JP</div>
+      <div class="font-role">本文・UIテキスト用フォント — Google Fonts</div>
+      <div class="font-weights">
+        <div class="font-weight-item">
+          <div class="font-weight-sample" style="font-family:'Noto Sans JP'; font-weight:400">Aa</div>
+          <div class="font-weight-label">Regular / 400</div>
+        </div>
+        <div class="font-weight-item">
+          <div class="font-weight-sample" style="font-family:'Noto Sans JP'; font-weight:500">Aa</div>
+          <div class="font-weight-label">Medium / 500</div>
+        </div>
+        <div class="font-weight-item">
+          <div class="font-weight-sample" style="font-family:'Noto Sans JP'; font-weight:600">Aa</div>
+          <div class="font-weight-label">SemiBold / 600</div>
+        </div>
+        <div class="font-weight-item" style="margin-left:24px">
+          <div class="font-weight-sample" style="font-family:'Noto Sans JP'; font-size:16px; color:#333">スピーキング力を伸ばす</div>
+          <div class="font-weight-label">使用例</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="label" style="margin-top:24px">Type Scale — タイプスケール</div>
+    <div class="bg-white">
+      <table class="typo-table">
+        <thead>
+          <tr>
+            <th>タグ</th>
+            <th>プレビュー</th>
+            <th>フォント</th>
+            <th>サイズ</th>
+            <th>ウェイト</th>
+            <th>行高</th>
+            <th>用途</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="typo-tag">H1</span></td>
+            <td><div class="typo-preview" style="font-size:28px; font-weight:700; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">英語コーチング革命</div></td>
+            <td class="typo-spec">Noto Serif JP</td>
+            <td class="typo-spec"><strong>64px</strong></td>
+            <td class="typo-spec"><strong>700</strong> Bold</td>
+            <td class="typo-spec">—</td>
+            <td class="typo-spec">ヒーローセクション大見出し</td>
+          </tr>
+          <tr>
+            <td><span class="typo-tag">H2</span></td>
+            <td><div class="typo-preview" style="font-size:22px; font-weight:500; color:var(--navy-primary);">TEPPEN ENGLISHは</div></td>
+            <td class="typo-spec">Noto Serif JP</td>
+            <td class="typo-spec"><strong>28px</strong></td>
+            <td class="typo-spec"><strong>500</strong> Medium</td>
+            <td class="typo-spec">—</td>
+            <td class="typo-spec">セクション補助見出し</td>
+          </tr>
+          <tr>
+            <td><span class="typo-tag">H3</span></td>
+            <td><div class="typo-preview" style="font-size:20px; font-weight:600; color:var(--navy-primary);">従来の英語コーチングと異なります</div></td>
+            <td class="typo-spec">Noto Serif JP</td>
+            <td class="typo-spec"><strong>48px</strong></td>
+            <td class="typo-spec"><strong>600</strong> SemiBold</td>
+            <td class="typo-spec">67.2px</td>
+            <td class="typo-spec">セクションメイン見出し</td>
+          </tr>
+          <tr>
+            <td><span class="typo-tag">H4</span></td>
+            <td><div class="typo-preview" style="font-size:18px; font-weight:600; color:var(--navy-primary);">市販教材は使わない</div></td>
+            <td class="typo-spec">Noto Serif JP</td>
+            <td class="typo-spec"><strong>36px</strong></td>
+            <td class="typo-spec"><strong>600</strong> SemiBold</td>
+            <td class="typo-spec">50.4px</td>
+            <td class="typo-spec">機能紹介・小見出し</td>
+          </tr>
+          <tr>
+            <td><span class="typo-tag">P</span></td>
+            <td><div style="font-size:14px; color:#333; font-family:'Noto Sans JP';">スピーキング力の向上に特化した独自プログラム</div></td>
+            <td class="typo-spec">Noto Sans JP</td>
+            <td class="typo-spec"><strong>14px</strong></td>
+            <td class="typo-spec"><strong>600</strong> SemiBold</td>
+            <td class="typo-spec">—</td>
+            <td class="typo-spec">本文・説明文</td>
+          </tr>
+          <tr>
+            <td><span class="typo-tag">Nav</span></td>
+            <td><div style="font-size:14px; color:#333; font-family:'Noto Sans JP'; font-weight:400;">サービスの特徴・料金</div></td>
+            <td class="typo-spec">Noto Sans JP</td>
+            <td class="typo-spec"><strong>16px</strong></td>
+            <td class="typo-spec"><strong>400</strong> Regular</td>
+            <td class="typo-spec">16px</td>
+            <td class="typo-spec">ナビゲーションリンク</td>
+          </tr>
+          <tr>
+            <td><span class="typo-tag">BTN</span></td>
+            <td><div style="font-size:13px; color:#333; font-family:'Noto Sans JP'; font-weight:400; border:1px solid #333; border-radius:24px; display:inline-block; padding:6px 16px;">無料カウンセリング</div></td>
+            <td class="typo-spec">Noto Sans JP</td>
+            <td class="typo-spec"><strong>15px</strong></td>
+            <td class="typo-spec"><strong>400</strong> Regular</td>
+            <td class="typo-spec">—</td>
+            <td class="typo-spec">CTAボタン</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- =================== 3. LOGO =================== -->
+  <section class="section" id="logo" aria-labelledby="logo-title">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2 class="section-title" id="logo-title">ロゴ使用ガイドライン</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="label">◎ 正しい使用例</div>
+    <div class="logo-grid" style="margin-bottom:28px">
+      <div class="logo-card">
+        <div class="logo-sample" style="background:var(--navy-primary);">
+          <img src="data:image/png;base64,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" style="height:64px; width:auto; object-fit:contain;" alt="TEPPEN ENGLISH 白ロゴ">
+        </div>
+        <div class="logo-card-info">◎ 推奨：ダークネイビー背景に白ロゴ（メイン使用）</div>
+      </div>
+      <div class="logo-card">
+        <div class="logo-sample" style="background:#FFFFFF; border:1px solid #E0E0E0;">
+          <img src="data:image/png;base64,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" style="height:64px; width:auto; object-fit:contain;" alt="TEPPEN ENGLISH カラーロゴ">
+        </div>
+        <div class="logo-card-info">○ 許容：白背景にカラーロゴ（ライトセクション）</div>
+      </div>
+    </div>
+
+    <div class="label">✕ NGな使用例</div>
+    <div class="ng-grid">
+      <div class="ng-card">
+        <div class="ng-sample" style="background:white;">
+          <img src="data:image/png;base64,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" style="height:40px; width:auto; object-fit:contain; opacity:0.12;" alt="TEPPEN ENGLISH NG例1">
+          <span class="ng-badge">NG</span>
+        </div>
+        <div class="ng-label">白背景に白ロゴ（低コントラスト・視認不可）</div>
+      </div>
+      <div class="ng-card">
+        <div class="ng-sample" style="background: linear-gradient(135deg, #FF6B6B, #FFE66D);">
+          <img src="data:image/png;base64,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" style="height:40px; width:auto; object-fit:contain;" alt="TEPPEN ENGLISH NG例2">
+          <span class="ng-badge">NG</span>
+        </div>
+        <div class="ng-label">ブランドカラー外の背景色（赤・黄など）</div>
+      </div>
+      <div class="ng-card">
+        <div class="ng-sample" style="background:var(--navy-primary);">
+          <img src="data:image/png;base64,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" style="height:40px; width:auto; object-fit:contain; transform:scaleX(1.7); transform-origin:center;" alt="TEPPEN ENGLISH NG例3">
+          <span class="ng-badge">NG</span>
+        </div>
+        <div class="ng-label">横方向への引き伸ばし・変形（アスペクト比変更）</div>
+      </div>
+    </div>
+
+    <p class="note" style="margin-top:16px">※ ロゴの最小表示サイズ：横幅 80px 以上を推奨。それ以下はアイコンのみ使用を検討。</p>
+  </section>
+
+  <!-- =================== 4. BUTTONS =================== -->
+  <section class="section" id="buttons" aria-labelledby="buttons-title">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <h2 class="section-title" id="buttons-title">ボタン・UIコンポーネント</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="button-grid">
+      <div class="button-card">
+        <div class="button-preview">
+          <button class="btn-primary">
+            <span>＼限定特典あり／<br>無料カウンセリングを予約する</span>
+            <span class="btn-primary-icon">▸</span>
+          </button>
+        </div>
+        <div class="button-name">Primary CTA Button（ピル型）</div>
+        <div class="button-spec">
+          bg: #FFFFFF<br>
+          color: #333333<br>
+          border: 1.5px solid #333333<br>
+          border-radius: 48px<br>
+          padding: 15px 25px<br>
+          font: Noto Sans JP 15px Regular<br>
+          ※ 丸アイコン付き、プライマリ押し
+        </div>
+      </div>
+
+      <div class="button-card">
+        <div class="button-preview" style="background:var(--navy-primary);">
+          <button class="btn-nav">無料カウンセリング<br>予約はこちら <span style="font-size:16px">▸</span></button>
+        </div>
+        <div class="button-name">Nav CTA Button（スクエア型）</div>
+        <div class="button-spec">
+          bg: #076FB3<br>
+          color: #FFFFFF<br>
+          border-radius: 0px（直角）<br>
+          padding: 14px 20px<br>
+          font: Noto Sans JP 14px Regular<br>
+          ※ ナビゲーション右端に配置
+        </div>
+      </div>
+
+      <div class="button-card">
+        <div class="button-preview">
+          <button class="btn-tag">従来の英語コーチング</button>
+        </div>
+        <div class="button-name">Section Tag / Label</div>
+        <div class="button-spec">
+          bg: #00375D<br>
+          color: #FFFFFF<br>
+          border-radius: 4px<br>
+          padding: 8px 20px<br>
+          font: Noto Sans JP 13px SemiBold<br>
+          ※ セクション内の比較ラベル等に使用
+        </div>
+      </div>
+
+      <div class="button-card">
+        <div class="button-preview" style="background:var(--navy-primary);">
+          <button class="btn-gold">入会金 33,000円OFF</button>
+        </div>
+        <div class="button-name">Gold Campaign Button</div>
+        <div class="button-spec">
+          bg: Gold Gradient<br>
+          color: #011E33<br>
+          border-radius: 6px<br>
+          padding: 14px 28px<br>
+          font: Noto Serif JP 18px Bold<br>
+          ※ キャンペーン・特別訴求時のみ使用
+        </div>
+      </div>
+
+      <div class="button-card">
+        <div class="button-preview">
+          <button style="background:white; color:var(--navy-primary); border:1.5px solid var(--navy-primary); border-radius:48px; padding:12px 24px; font-family:'Noto Sans JP'; font-size:14px; cursor:pointer;">インタビュー記事を読む</button>
+        </div>
+        <div class="button-name">Secondary Button（アウトライン）</div>
+        <div class="button-spec">
+          bg: #FFFFFF<br>
+          color: #00375D<br>
+          border: 1.5px solid #00375D<br>
+          border-radius: 48px<br>
+          padding: 15px 25px<br>
+          ※ 二次CTA、コンテンツリンクに使用
+        </div>
+      </div>
+
+      <div class="button-card">
+        <div class="button-preview" style="background:var(--navy-primary);">
+          <button style="background:white; color:var(--navy-primary); border:none; border-radius:48px; padding:10px 20px; font-family:'Noto Sans JP'; font-size:13px; cursor:pointer; white-space:nowrap;">レベル</button>
+        </div>
+        <div class="button-name">Badge / Chip（白ピル）</div>
+        <div class="button-spec">
+          bg: #FFFFFF<br>
+          color: #00375D<br>
+          border-radius: 48px<br>
+          padding: 8px 20px<br>
+          font: Noto Sans JP 13px Regular<br>
+          ※ チャートラベル・フィルター等に使用
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 5. SPACING =================== -->
+  <section class="section" id="spacing" aria-labelledby="spacing-title">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <h2 class="section-title" id="spacing-title">スペーシング・レイアウト</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="label">Spacing Scale</div>
+    <div style="margin-bottom:24px">
+      <div class="spacing-row"><div class="spacing-val">4px</div><div class="spacing-bar" style="width:4px"></div><div class="spacing-usage">最小単位。インライン要素間のマイクロスペース</div></div>
+      <div class="spacing-row"><div class="spacing-val">8px</div><div class="spacing-bar" style="width:8px"></div><div class="spacing-usage">コンパクトな要素間。バッジ・タグ内パディング</div></div>
+      <div class="spacing-row"><div class="spacing-val">16px</div><div class="spacing-bar" style="width:16px"></div><div class="spacing-usage">標準グループ内スペース。カード内パディング基本単位</div></div>
+      <div class="spacing-row"><div class="spacing-val">24px</div><div class="spacing-bar" style="width:24px"></div><div class="spacing-usage">コンポーネント間スペース。関連要素グルーピング</div></div>
+      <div class="spacing-row"><div class="spacing-val">40px</div><div class="spacing-bar" style="width:40px"></div><div class="spacing-usage">セクション内余白。コンテンツブロック間隔</div></div>
+      <div class="spacing-row"><div class="spacing-val">64px</div><div class="spacing-bar" style="width:64px"></div><div class="spacing-usage">セクション間の大きな余白</div></div>
+      <div class="spacing-row"><div class="spacing-val">80px</div><div class="spacing-bar" style="width:80px"></div><div class="spacing-usage">ページ左右パディング（デスクトップ）</div></div>
+    </div>
+
+    <div class="label">Border Radius</div>
+    <div class="bg-white" style="display:flex; gap:24px; align-items:flex-end; flex-wrap:wrap;">
+      <div style="text-align:center"><div style="width:64px; height:64px; background:var(--blue-cta); border-radius:4px; margin:0 auto 8px;"></div><div class="typo-spec">4px<br>タグ・ラベル</div></div>
+      <div style="text-align:center"><div style="width:64px; height:64px; background:var(--blue-cta); border-radius:8px; margin:0 auto 8px;"></div><div class="typo-spec">8px<br>カード・入力欄</div></div>
+      <div style="text-align:center"><div style="width:64px; height:64px; background:var(--blue-cta); border-radius:12px; margin:0 auto 8px;"></div><div class="typo-spec">12px<br>大型カード</div></div>
+      <div style="text-align:center"><div style="width:64px; height:64px; background:var(--blue-cta); border-radius:0px; margin:0 auto 8px;"></div><div class="typo-spec">0px<br>ナビCTAボタン</div></div>
+      <div style="text-align:center"><div style="width:140px; height:44px; background:var(--navy-primary); border-radius:48px; margin:0 auto 8px;"></div><div class="typo-spec">48px（ピル型）<br>メインCTAボタン</div></div>
+    </div>
+  </section>
+
+  <!-- =================== 6. TONE =================== -->
+  <section class="section" id="tone" aria-labelledby="tone-title">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <h2 class="section-title" id="tone-title">トーン &amp; マナー</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="tone-grid" style="margin-bottom:24px">
+      <div class="tone-card">
+        <div class="tone-keyword">Premium &amp; Trust</div>
+        <div class="tone-desc">ダークネイビー × ゴールドアクセントで高品質・信頼感を表現。ターゲットはビジネスパーソン。「本格的・本物」の印象を貫く</div>
+      </div>
+      <div class="tone-card accent">
+        <div class="tone-keyword">Aspirational</div>
+        <div class="tone-desc">「TEPPEN（頂点）」のコンセプトに沿って、山頂を目指す上昇志向を視覚的に表現。ユーザーの成長意欲を刺激するデザイン</div>
+      </div>
+      <div class="tone-card dark">
+        <div class="tone-keyword">Clean &amp; Modern</div>
+        <div class="tone-desc">余白を広くとりコンテンツを明確に区分。情報過多を避けシンプルに訴求。装飾より機能美を優先</div>
+      </div>
+    </div>
+
+    <div class="label">セクションパターン（交互レイアウト）</div>
+    <div class="bg-white" style="padding:0; overflow:hidden;">
+      <div style="display:flex; height:60px;"><div style="flex:1; background:var(--hero-gradient); display:flex; align-items:center; padding:0 24px; color:white; font-family:'Noto Serif JP'; font-size:13px; font-weight:600;">ダークセクション（衝撃・強調）</div></div>
+      <div style="display:flex; height:60px;"><div style="flex:1; background:var(--blue-light-bg); display:flex; align-items:center; padding:0 24px; color:var(--navy-primary); font-family:'Noto Serif JP'; font-size:13px; font-weight:600;">ライトセクション（説明・詳細）</div></div>
+      <div style="display:flex; height:60px;"><div style="flex:1; background:var(--navy-primary); display:flex; align-items:center; padding:0 24px; color:white; font-family:'Noto Serif JP'; font-size:13px; font-weight:600;">ダークセクション（強調・比較）</div></div>
+      <div style="display:flex; height:60px;"><div style="flex:1; background:white; display:flex; align-items:center; padding:0 24px; color:var(--navy-primary); font-family:'Noto Serif JP'; font-size:13px; font-weight:600;">ホワイトセクション（事例・証言）</div></div>
+    </div>
+
+    <div class="label" style="margin-top:24px">使用すべきでない表現</div>
+    <div class="bg-white">
+      <table style="width:100%; border-collapse:collapse; font-size:13px;">
+        <thead>
+          <tr>
+            <th style="text-align:left; color:#999; font-size:11px; letter-spacing:0.05em; padding:0 12px 10px; border-bottom:1px solid #EEE;">避けるべき要素</th>
+            <th style="text-align:left; color:#999; font-size:11px; letter-spacing:0.05em; padding:0 12px 10px; border-bottom:1px solid #EEE;">理由</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:10px 12px; border-bottom:1px solid #F5F5F5; color:#E53E3E;">明るい暖色（赤・オレンジ・ピンク）の大面積使用</td><td style="padding:10px 12px; border-bottom:1px solid #F5F5F5; color:#666;">ブランドのプロフェッショナルなトーンを損なう</td></tr>
+          <tr><td style="padding:10px 12px; border-bottom:1px solid #F5F5F5; color:#E53E3E;">丸みを強めたUI（bubble系）</td><td style="padding:10px 12px; border-bottom:1px solid #F5F5F5; color:#666;">カジュアルすぎてビジネス向け訴求に不適</td></tr>
+          <tr><td style="padding:10px 12px; border-bottom:1px solid #F5F5F5; color:#E53E3E;">手書き・筆記体フォントの使用</td><td style="padding:10px 12px; border-bottom:1px solid #F5F5F5; color:#666;">信頼感・格調を下げるリスク</td></tr>
+          <tr><td style="padding:10px 12px; border-bottom:1px solid #F5F5F5; color:#E53E3E;">キャラクターイラスト・マスコット</td><td style="padding:10px 12px; border-bottom:1px solid #F5F5F5; color:#666;">ターゲット層（社会人）に対してカジュアルすぎる</td></tr>
+          <tr><td style="padding:10px 12px; color:#E53E3E;">暗セクションでの小さいフォントサイズ（12px以下）</td><td style="padding:10px 12px; color:#666;">視認性・アクセシビリティの低下</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- =================== 7. FIGMA NOTES =================== -->
+  <section class="section" id="figma" aria-labelledby="figma-title">
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <h2 class="section-title" id="figma-title">Figma 実装ノート</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="figma-box">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#1A56DB"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5zM12 2h3.5a3.5 3.5 0 1 1 0 7H12V2zm0 10.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0zm-7 3.5A3.5 3.5 0 0 1 8.5 12H12v7H8.5A3.5 3.5 0 0 1 5 15.5zM12 19v-7h3.5a3.5 3.5 0 1 1 0 7H12z"/></svg>
+        Figma Styles の設定推奨事項
+      </h3>
+      <div class="figma-grid">
+        <div class="figma-item">
+          <strong>Color Styles</strong>
+          Brand/Navy-Primary (#00375D)<br>
+          Brand/Navy-Deep-1 (#01294B)<br>
+          Brand/Navy-Deep-2 (#011E33)<br>
+          Brand/CTA-Blue (#076FB3)<br>
+          Brand/Light-Blue-BG (#E4EBEF)<br>
+          Brand/Gold-Dark (#C69D58)<br>
+          Brand/Gold-Light (#FDECBB)<br>
+          Text/Primary (#333333)<br>
+          Text/White (#FFFFFF)
+        </div>
+        <div class="figma-item">
+          <strong>Text Styles</strong>
+          H1 / Noto Serif JP Bold 64px<br>
+          H2 / Noto Serif JP Medium 28px<br>
+          H3 / Noto Serif JP SemiBold 48px<br>
+          H4 / Noto Serif JP SemiBold 36px<br>
+          Body / Noto Sans JP SemiBold 14px<br>
+          Nav / Noto Sans JP Regular 16px<br>
+          Button / Noto Sans JP Regular 15px<br>
+          Label / Noto Sans JP Bold 11px
+        </div>
+        <div class="figma-item">
+          <strong>Effect Styles</strong>
+          Shadow/Card: 0 2px 12px rgba(0,0,0,0.08)<br>
+          Shadow/Elevated: 0 4px 24px rgba(0,0,0,0.12)<br>
+          Fill/Gold-Gradient: Gold Shimmer<br>
+          Fill/Hero-Gradient: Hero BG
+        </div>
+        <div class="figma-item">
+          <strong>Components 推奨構成</strong>
+          &#8226; Button (Primary / Nav / Tag / Gold)<br>
+          &#8226; Logo (Dark BG / Light BG)<br>
+          &#8226; Section Header (Dark / Light)<br>
+          &#8226; Card (Feature / Comparison / Testimonial)<br>
+          &#8226; Navigation Bar<br>
+          &#8226; Footer<br>
+          &#8226; Badge / Chip
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>TEPPEN ENGLISH デザインガイド 2026 &nbsp;|&nbsp;
+  <span>teppen-english.com</span> &nbsp;|&nbsp;
+  運営：株式会社スクールウィズ &nbsp;|&nbsp;
+  作成日：2026年4月1日</p>
+</footer>
+
+<!-- Navigation active state -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.site-nav a');
+    const sections = document.querySelectorAll('.section[id]');
+
+    function updateActiveNav() {
+      let current = '';
+      sections.forEach(function(section) {
+        const sectionTop = section.offsetTop - 80;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(function(link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+
+    // Smooth scroll
+    navLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
