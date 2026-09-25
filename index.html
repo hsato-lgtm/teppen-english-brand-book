@@ -84,6 +84,22 @@ code,.mono{font-family:var(--mono);font-size:12px}
 .thesis p{font-family:var(--serif);font-weight:600;font-size:clamp(18px,2.4vw,24px);line-height:1.5}
 @media (max-width:800px){.concept{grid-template-columns:1fr}}
 
+/* logo */
+.logos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.logocard{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.logocard .view{height:200px;display:grid;place-items:center;padding:32px}
+.logocard .view img{max-width:100%;max-height:100%;width:260px;height:auto}
+.logocard .view.on-dark{background:var(--grad-dark-bg)}
+.logocard .view.on-light{background:var(--white);border-bottom:1px solid var(--border)}
+.logocard .info{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px}
+.logocard .name{font-weight:700;color:var(--navy);font-size:14px}
+.logocard .use{font-size:13px}
+.dl{display:flex;gap:8px;flex-wrap:wrap}
+.dl a{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--white);background:var(--navy);border-radius:4px;padding:6px 12px;text-decoration:none}
+.dl a:hover{background:var(--navy-deep)}
+.dl a::after{content:"↓";font-weight:400}
+@media (max-width:700px){.logos{grid-template-columns:minmax(0,1fr)}}
+
 /* colors */
 .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .sw{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
@@ -207,7 +223,7 @@ table.spec td.name{font-weight:700;color:var(--navy);white-space:nowrap}
 .price hr{border:0;border-top:1px solid var(--border);width:100%;margin:2px 0}
 
 .header-demo{width:100%;background:var(--navy-deep);border-radius:8px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;flex-wrap:wrap}
-.header-demo .logo{font-weight:700;color:var(--white);font-size:13px;letter-spacing:.12em;line-height:1.2}
+.header-demo .logo{display:block;height:36px;width:auto}
 .header-demo ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;font-size:13px;font-weight:500;color:var(--white)}
 .header-demo .mini{background:var(--grad-gold-btn);color:var(--navy);font-weight:700;font-size:13px;border-radius:6px;padding:8px 14px;box-shadow:var(--shadow-cta)}
 
@@ -258,6 +274,7 @@ section[id]{scroll-margin-top:56px}
 <nav class="toc" aria-label="目次">
   <ul>
     <li><a href="#concept">コンセプト</a></li>
+    <li><a href="#logo">ロゴ</a></li>
     <li><a href="#color">カラー</a></li>
     <li><a href="#type">タイポグラフィ</a></li>
     <li><a href="#space">余白・レイアウト</a></li>
@@ -294,6 +311,53 @@ section[id]{scroll-margin-top:56px}
   <div class="thesis">
     <span>ひとことで</span>
     <p>落ち着いた信頼の土台の上で、変化への高揚を見せる。</p>
+  </div>
+</section>
+
+<section class="block" id="logo">
+  <div class="sec-head">
+    <span class="en">LOGO</span>
+    <h2>ロゴ</h2>
+    <p>背景に合わせて白と青の2種類を使い分けます。ボタンからそのままダウンロードできます。バナーや資料にはSVGを使ってください（拡大しても荒れません）。</p>
+  </div>
+  <div class="logos">
+    <div class="logocard">
+      <div class="view on-dark"><img src="assets/logo/teppen-english-logo-white.svg" alt="TEPPEN ENGLISH ロゴ（白）"></div>
+      <div class="info">
+        <span class="name">白（メイン）</span>
+        <p class="use">ネイビー、ダークグラデーション、写真の上など暗い背景に。LPのヘッダーで使っているものと同じデータです。</p>
+        <div class="dl"><a href="assets/logo/teppen-english-logo-white.svg" download>SVG</a></div>
+      </div>
+    </div>
+    <div class="logocard">
+      <div class="view on-light"><img src="assets/logo/teppen-english-logo-blue.svg" alt="TEPPEN ENGLISH ロゴ（青）"></div>
+      <div class="info">
+        <span class="name">青</span>
+        <p class="use">白や明るい背景に。ロゴの青 <code>#056EB4</code> はロゴ専用の色で、文字や面には使いません。</p>
+        <div class="dl"><a href="assets/logo/teppen-english-logo-blue.svg" download>SVG</a><a href="assets/logo/teppen-english-logo-blue.png" download>PNG（800×400・透過）</a></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub">使うときの決まり</h3>
+  <div class="dodont">
+    <div class="panel do">
+      <h4>DO</h4>
+      <ul>
+        <li>暗い背景には白、明るい背景には青を使う</li>
+        <li>横幅80px以上で使う（ヘッダーなど小さく置く場合も）</li>
+        <li>拡大・縮小は縦横の比率を保ったまま行う</li>
+      </ul>
+    </div>
+    <div class="panel dont">
+      <h4>DON'T</h4>
+      <ul>
+        <li>白や明るい背景に白ロゴを置く（見えなくなる）</li>
+        <li>ゴールドや赤など、白・青以外の色に塗り替える</li>
+        <li>縦や横だけに引き伸ばす、傾ける、影や縁取りを足す</li>
+        <li>文字と山のマークを切り離す、配置を組み替える</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -443,7 +507,7 @@ section[id]{scroll-margin-top:56px}
     <figure class="full">
       <div class="stage dark" style="flex-direction:column;align-items:flex-start;gap:22px">
         <div class="header-demo">
-          <span class="logo">TEPPEN<br>ENGLISH</span>
+          <img class="logo" src="assets/logo/teppen-english-logo-white.svg" alt="TEPPEN ENGLISH" width="102" height="41">
           <ul><li>TEPPEN ENGLISHとは</li><li>受講生インタビュー</li><li>5つの特徴</li><li>コンサルタント</li><li>料金プラン</li></ul>
           <span class="mini">無料カウンセリング予約</span>
         </div>
